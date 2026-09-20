@@ -1,5 +1,5 @@
-lisx=[1, 2, 3, 4, 5]
-lisy=[2,2.5,3,3.5,4]
+lisx=[1, 2, 3, 4, 5, 6, 7]
+lisy=[0.5, 2.5, 2.0, 4.0, 3.5, 6.0, 5.5]
 
 def sumx():
     x=0
@@ -19,12 +19,6 @@ def cuadrx():
         cuadx+=lisx[i]**2
     return cuadx
 
-def cuadry():
-    cuady=0
-    for i in range(len(lisy)):
-        cuady+=lisy[i]**2
-    return cuady
-
 def sumxy():
     xy=0
     for i in range(len(lisx)):
@@ -34,5 +28,4 @@ def sumxy():
 x= sumx()
 y= sumy()
 cuadx= cuadrx()
-cuady= cuadry()
 sumxy= sumxy()
