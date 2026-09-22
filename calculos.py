@@ -1,10 +1,34 @@
-from sumatoria import *
 from math import sqrt
+
+lisx=[1, 2, 3, 4, 5, 6, 7]
+lisy=[0.5, 2.5, 2.0, 4.0, 3.5, 6.0, 5.5]
+
+def sumx():
+    x=0
+    for i in range(len(lisx)):
+        x+=lisx[i]
+    return x
+
+def sumy():
+    y=0
+    for i in range(len(lisy)):
+        y+=lisy[i]
+    return y
+
+def cuadrx():
+    cuadx=0
+    for i in range(len(lisx)):
+        cuadx+=lisx[i]**2
+    return cuadx
+
+def sumxy():
+    xy=0
+    for i in range(len(lisx)):
+        xy+=lisx[i]*lisy[i]
+    return xy
 
 def promedio(x,y):
     return (x/len(lisx),y/len(lisy))
-
-prox,proy=promedio(x,y)
 
 def pendiente(x,y,cuadx,sumxy):
     a1 = (len(lisx)*sumxy-x*y)/(len(lisx)*cuadx-x**2)
@@ -33,6 +57,13 @@ def error_estandar():
 def coeficiente_correlacion():
     r=(des-err)/des
     return r
+
+x= sumx()
+y= sumy()
+cuadx= cuadrx()
+sumxy= sumxy()
+
+prox,proy=promedio(x,y)
 
 a1=pendiente(x,y,cuadx,sumxy)
 a0=intersaccion(prox,proy,a1)
