@@ -1,4 +1,5 @@
 from math import sqrt
+import matplotlib.pyplot as plt
 
 lisx=[1, 2, 3, 4, 5, 6, 7]
 lisy=[0.5, 2.5, 2.0, 4.0, 3.5, 6.0, 5.5]
@@ -7,74 +8,87 @@ def sumx():
     x=0
     for i in range(len(lisx)):
         x+=lisx[i]
-    return x
+    return round(x, 4)
 
 def sumy():
     y=0
     for i in range(len(lisy)):
         y+=lisy[i]
-    return y
+    return round(y, 4)
 
 def cuadrx():
     cuadx=0
     for i in range(len(lisx)):
         cuadx+=lisx[i]**2
-    return cuadx
+    return round(cuadx, 4)
 
 def sumxy():
     xy=0
     for i in range(len(lisx)):
         xy+=lisx[i]*lisy[i]
-    return xy
+    return round(xy, 4)
 
 def promedio(x,y):
-    return (x/len(lisx),y/len(lisy))
+    return round((x/len(lisx),y/len(lisy)), 4)
 
-def pendiente(x,y,cuadx,sumxy):
-    a1 = (len(lisx)*sumxy-x*y)/(len(lisx)*cuadx-x**2)
-    return a1
-
-def intersaccion(prox,proy,a1):
-    a0=proy-a1*prox
-    return a0
-
-def desviacion_estandar():
+def desviacion_estandar(proy): #(y-promedio y)^2
     desviacion_sum=0
     for i in range(len(lisx)):
         desviaciony= (lisy[i]-proy)**2
         desviacion_sum+=desviaciony
-    deviacion_est= sqrt(desviacion_sum/(len(lisy)-1))
-    return deviacion_est
+    return round(desviacion_sum, 4)
 
-def error_estandar():
+def error_estandar(a0, a1):#(y-a0-a1*x)^2
     error_sum=0
     for i in range(len(lisx)):
         error= (lisy[i]-a0-a1*lisx[i])**2
         error_sum+=error
-    error_est= sqrt(error_sum/(len(lisy)-2))
-    return error_est
+    return round(error_sum, 4)
 
-def coeficiente_correlacion():
-    r=(des-err)/des
-    return r
+
 
 x= sumx()
 y= sumy()
 cuadx= cuadrx()
 sumxy= sumxy()
-
 prox,proy=promedio(x,y)
+desviacion_sum=desviacion_estandar(proy)
 
-a1=pendiente(x,y,cuadx,sumxy)
-a0=intersaccion(prox,proy,a1)
-des=desviacion_estandar()
-err=error_estandar()
-r=coeficiente_correlacion()
+#pendiente y intersección
+a1 = round((len(lisx)*sumxy-x*y)/(len(lisx)*cuadx-x**2), 4)
+a0=round(proy-a1*prox, 4)
+
+#desviacion estandar
+error_sum=error_estandar(a0, a1)
+deviacion_est= round(sqrt(desviacion_sum/(len(lisy)-1)), 4)
+
+# error estandar
+error_est= round(sqrt(round(error_sum,4)/(len(lisy)-2)), 4)
+
+#coeficiente de correlación
+r=round((deviacion_est-error_est)/deviacion_est, 4)
 
 print(f"Promedio x: {prox}")
 print(f"Promedio y: {proy}")
 print(f"Pendiente: {a1}")
 print(f"Intersección: {a0}")
-print(f"Desviación estándar: {des}")
-print(f"Error estándar: {err}")
+print(f"Desviación estándar: {deviacion_est}")
+print(f"Error estándar: {error_est}")
 print(f"Coeficiente de correlación: {r}")
+
+#grafica de la regresion lineal
+
+def recta(x):
+    return [a1*xi + a0 for xi in x]
+
+plt.scatter(lisx, lisy, label="Datos")
+
+plt.plot(lisx, recta(lisx), label="Regresión lineal")
+
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.title("Regresión lineal")
+plt.legend()
+plt.grid()
+
+plt.show()
