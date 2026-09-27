@@ -104,8 +104,7 @@ r=round(sqrt(r_cuadrado), 4)
 
 print(f"Promedio x: {prox}")
 print(f"Promedio y: {proy}")
-print(f"Pendiente: {a1}")
-print(f"Intersección: {a0}")
+print(f"ecuacion lineal: y = {a1}x + {a0}")
 print(f"Desviación estándar: {desviacion_est}")
 print(f"Error estándar: {error_est}")
 print(f"Coeficiente de determinación: {r_cuadrado}")
@@ -123,7 +122,7 @@ b = [y, sumxy, x_cuadradoy]
 a0_pol, a1_pol, a2_pol = np.linalg.solve(A, b)
 a0_pol, a1_pol, a2_pol = round(a0_pol, 4), round(a1_pol, 4), round(a2_pol, 4)
 
-print(f"{a0_pol} + {a1_pol}x + {a2_pol}x^2")
+print(f"ecuacion polinomial: y = {a0_pol} + {a1_pol}x + {a2_pol}x^2")
 
 #error estandar polinomial
 error_sum_polinomial = round(sum_error_cuadratica(a0_pol, a1_pol, a2_pol), 4)
