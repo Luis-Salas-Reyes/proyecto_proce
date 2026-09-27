@@ -104,6 +104,8 @@ r=round(sqrt(r_cuadrado), 4)
 
 print(f"Promedio x: {prox}")
 print(f"Promedio y: {proy}")
+print(f"pendiente lineal: {a1}")
+print(f"intersección lineal: {a0}")
 print(f"ecuacion lineal: y = {a1}x + {a0}")
 print(f"Desviación estándar: {desviacion_est}")
 print(f"Error estándar: {error_est}")
