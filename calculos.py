@@ -104,8 +104,8 @@ r=round(sqrt(r_cuadrado), 4)
 
 print(f"Promedio x: {prox}")
 print(f"Promedio y: {proy}")
-print(f"pendiente lineal: {a1}")
-print(f"intersección lineal: {a0}")
+print(f"a1 lineal: {a1}")
+print(f"a0 lineal: {a0}")
 print(f"ecuacion lineal: y = {a1}x + {a0}")
 print(f"Desviación estándar: {desviacion_est}")
 print(f"Error estándar: {error_est}")
@@ -113,7 +113,7 @@ print(f"Coeficiente de determinación: {r_cuadrado}")
 print(f"Coeficiente de correlación: {r}")
 
 #regresion polinomial
-
+print("datos de la regresion polinomial")
 A = [
     [n,    x,  cuadx],
     [x, cuadx, x_cubica()],
@@ -123,7 +123,9 @@ A = [
 b = [y, sumxy, x_cuadradoy]
 a0_pol, a1_pol, a2_pol = np.linalg.solve(A, b)
 a0_pol, a1_pol, a2_pol = round(a0_pol, 4), round(a1_pol, 4), round(a2_pol, 4)
-
+print(f"a2 polinomial: {a2_pol}")
+print(f"a1 polinomial: {a1_pol}")
+print(f"a0 polinomial: {a0_pol}")
 print(f"ecuacion polinomial: y = {a0_pol} + {a1_pol}x + {a2_pol}x^2")
 
 #error estandar polinomial
